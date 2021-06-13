@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+PORT = process.env.PORT || 3005;
+
 mongoose.connect(
    process.env.DB_CONNECTION,
    { useNewUrlParser: true, useUnifiedTopology: true },
@@ -13,6 +15,6 @@ mongoose.connect(
    }
 );
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
    console.log("heyooooooo");
 });

@@ -10,4 +10,30 @@ router.get("/", (req, res) => {
   res.send("Please login.");
 });
 
+router.post("/", async (req, res) => {
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  //does username exist?
+  const user = await User.findOne({
+    username: req.body.username,
+  });
+
+  if (user)
+    return res
+      .status(400)
+      .send("Username doesn't exist, please register yourself.");
+
+  //hashpassword
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+  const correctPassword = bcrypt.compare(req.body.password, user.password);
+
+  if (!correctPassword) return res.status(400).send("Invalid Credentials");
+
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  res.header("auth-token", token).json({ token: token, user: user });
+});
+
 module.exports = router;

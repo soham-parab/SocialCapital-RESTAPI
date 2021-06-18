@@ -2,12 +2,14 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const userRoute = require("./Routes/Login.route");
+const loginRoute = require("./Routes/Login.route");
+const registerRoute = require("./Routes/Register.route");
 
 dotenv.config();
 app.use(express.json());
 
-app.use("/users", userRoute);
+app.use("/login", loginRoute);
+app.use("/register", registerRoute);
 
 PORT = process.env.PORT || 3005;
 

@@ -14,13 +14,6 @@ router.post("/", async (req, res) => {
   const { error } = registerValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  //does email already exist?
-  const userAlreadyExists = await User.findOne({ username: req.body.username });
-  if (userAlreadyExists)
-    return res
-      .status(400)
-      .send("This username is already registered, please login.");
-
   //hash password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -29,10 +22,19 @@ router.post("/", async (req, res) => {
     username: req.body.username,
     password: hashedPassword,
   });
+  //does user already exist?
+  // const userAlreadyExists = await User.findOne({
+  //   username: req.body.username,
+  // });
+  // if (userAlreadyExists)
+  //   return res
+  //     .status(400)
+  //     .send("This username is already registered, please login.");
 
   try {
     const savedUser = await user.save();
-    res.send({ User: savedUser._id });
+    console.log(savedUser);
+    res.json({ User: savedUser._id });
   } catch (error) {
     res.status(400).send(error);
   }

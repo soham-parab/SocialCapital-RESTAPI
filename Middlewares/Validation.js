@@ -1,4 +1,4 @@
-const joi = require("joi");
+const Joi = require("joi");
 
 //register validation
 const registerValidation = (data) => {

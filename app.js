@@ -4,12 +4,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const loginRoute = require("./Routes/Login.route");
 const registerRoute = require("./Routes/Register.route");
+const postRoute = require("./Routes/Posts.route");
 
 dotenv.config();
 app.use(express.json());
 
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
+app.use("/posts", postRoute);
 
 PORT = process.env.PORT || 3005;
 

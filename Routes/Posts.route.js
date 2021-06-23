@@ -2,6 +2,7 @@ const router = require("express").Router();
 
 const Post = require("../Models/Posts.model");
 const User = require("../Models/User.model");
+const verify = require("../Middlewares/verifyToken");
 
 //get specific post
 router.get("/:id", async (req, res) => {
@@ -14,7 +15,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //Create a Post
-router.post("/", async (req, res) => {
+router.post("/", verify, async (req, res) => {
   const newPost = new Post(req.body);
 
   try {

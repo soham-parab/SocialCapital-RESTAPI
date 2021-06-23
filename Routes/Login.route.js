@@ -5,6 +5,7 @@ const router = express.Router();
 const User = require("../Models/User.model");
 const { loginValidation } = require("../Middlewares/Validation");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
   res.send("Please login.");
@@ -19,7 +20,7 @@ router.post("/", async (req, res) => {
     username: req.body.username,
   });
 
-  if (user)
+  if (!user)
     return res
       .status(400)
       .send("Username doesn't exist, please register yourself.");
@@ -33,7 +34,11 @@ router.post("/", async (req, res) => {
   if (!correctPassword) return res.status(400).send("Invalid Credentials");
 
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).json({ token: token, user: user });
+  res.header("auth-token", token).send({ token: token, user: user });
 });
 
 module.exports = router;
+
+// {
+//     "user": "60d349104769943c1c60170f"
+// }

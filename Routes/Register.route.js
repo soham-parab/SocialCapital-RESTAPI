@@ -29,6 +29,7 @@ router.post("/", async (req, res) => {
     password: hashedPassword,
   });
 
+  console.log(user);
   try {
     const savedUser = await user.save();
     res.send({ user: savedUser._id });
@@ -38,3 +39,4 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
+    

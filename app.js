@@ -6,6 +6,8 @@ const loginRoute = require("./Routes/Login.route");
 const registerRoute = require("./Routes/Register.route");
 const postRoute = require("./Routes/Posts.route");
 const profileRoute = require("./Routes/Profile.route");
+const notificationRoute = require("./Routes/Notification.route");
+const searchRoute = require("./Routes/search.route");
 const cors = require("cors");
 
 dotenv.config();
@@ -15,6 +17,8 @@ app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/posts", postRoute);
 app.use("/profile", profileRoute);
+app.use("/search", searchRoute);
+app.use("/notification", notificationRoute);
 
 PORT = process.env.PORT || 3005;
 

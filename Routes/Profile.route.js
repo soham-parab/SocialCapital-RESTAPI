@@ -6,10 +6,10 @@ const PostSchema = require("../models/Posts.model");
 const FollowStats = require("../models/FollowStats.model");
 const Profile = require("../models/UserProfile.model");
 const bcrypt = require("bcryptjs");
-// const {
-//   newFollowerNotification,
-//   removeFollowerNotification,
-// } = require("../utils");
+const {
+  newFollowerNotification,
+  removeFollowerNotification,
+} = require("../utilities/utils");
 
 // GET PROFILE INFO
 

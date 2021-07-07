@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
-const User = require("../Models/User.model");
-const { loginValidation } = require("../Middlewares/Validation");
+const User = require("../models/User.model");
+const { loginValidation } = require("../middlewares/Validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -38,7 +38,3 @@ router.post("/", async (req, res) => {
 });
 
 module.exports = router;
-
-// {
-//     "user": "60d349104769943c1c60170f"
-// }

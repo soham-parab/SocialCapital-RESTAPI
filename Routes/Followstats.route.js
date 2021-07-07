@@ -1,3 +1,0 @@
-//get followers
-
-//get following

@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
-const Post = require("../Models/Posts.model");
-const User = require("../Models/User.model");
-const verify = require("../Middlewares/verifyToken");
+const PostSchema = require("../models/Posts.model");
+const User = require("../models/User.model");
+const verify = require("../middlewares/verifyToken");
 
 //get specific post
 router.get("/:id", async (req, res) => {

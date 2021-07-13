@@ -79,7 +79,7 @@ router.post("/", verify, async (req, res) => {
   try {
     const newPost = {
       user: req.userId,
-      text: req.text,
+      text: req.body.text,
     };
 
     const post = await new Post(newPost).save();

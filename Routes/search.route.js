@@ -4,10 +4,11 @@ const verify = require("../middlewares/verifyToken");
 const User = require("../models/User.model");
 
 router.get("/:searchText", verify, async (req, res) => {
+  console.log(req);
   try {
     const { searchText } = req.params;
     const { userId } = req;
-
+    console.log(searchText);
     if (searchText.length === 0) res.status(400).json([]);
 
     let userPattern = new RegExp(`^${searchText}`);

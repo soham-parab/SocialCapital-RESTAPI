@@ -65,7 +65,7 @@ const router = express.Router();
 const verify = require("../middlewares/verifyToken");
 const Post = require("../models/Posts.model");
 const User = require("../models/User.model");
-const FollowStats = require("../models/FollowStats.model");
+const FollowStats = require("../models/Followstats.model");
 const {
   newLikeNotification,
   removeLikeNotification,
@@ -76,18 +76,11 @@ const {
 // CREATE A POST
 
 router.post("/", verify, async (req, res) => {
-  const { text, picUrl } = req.body;
-
-  if (text.length < 1 && !picUrl)
-    return res.status(401).send("No text or pic found");
-
   try {
     const newPost = {
       user: req.userId,
-      text,
+      text: req.text,
     };
-
-    if (picUrl) newPost.picUrl = picUrl;
 
     const post = await new Post(newPost).save();
 

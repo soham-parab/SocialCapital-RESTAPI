@@ -3,7 +3,7 @@ const router = express.Router();
 const verify = require("../middlewares/verifyToken");
 const User = require("../models/User.model");
 const PostSchema = require("../models/Posts.model");
-const FollowStats = require("../models/FollowStats.model");
+const FollowStats = require("../models/Followstats.model");
 const Profile = require("../models/UserProfile.model");
 const bcrypt = require("bcryptjs");
 const {
